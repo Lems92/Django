@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/all.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+    <title>Upload Page</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item disable">
+                <a class="nav-link" href="/">Home <span class="sr-only"></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disable" href="login">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disable" href="signup">Signup</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disable" href="admin_hotel">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="upload">Upload</a>
+            </li>
+        </ul>
+        </div>
+    </nav>
+    <section class="vh-100" style="background-color: #ffffff;">
+        <div class="container py-5 h-100">
+          
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-xl-10">
+              <div class="card" style="border-radius: 1rem;">
+                {% block content %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alter-warning aler-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    {% endfor %}
+                {% endif %}
+                {% endblock %}
+                <div class="row g-0">
+                  <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                    <div class="card-body p-4 p-lg-5 text-black">
+                      <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex align-items-center mb-3 pb-1">
+                          <i class="fas fa-cubes fa-2x me-3" style="color: #ff6219;"></i>
+                          <span class="h1 fw-bold mb-0">Upload</span>
+                        </div>
+                        
+                        <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Upload new room into base</h5>
+                        <div class="form-outline mb-4">
+                          <input name="number" class="form-control form-control-lg" />
+                          <label class="form-label">Number</label>
+                        </div>
+      
+                        <div class="form-outline mb-4">
+                          <input name="image" type="file" class="form-control form-control-lg" accept="image/*"/>
+                          <label class="form-label">Image</label>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                          <input name="price" type="number"  class="form-control form-control-lg" />
+                          <label class="form-label" >Price</label>
+                        </div>
+                        
+                        <div class="form-outline mb-4">
+                          <input name="capacity" type="number"  class="form-control form-control-lg" />
+                          <label class="form-label" >Capacity</label>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <select name="category">
+                                <option value="VIP">VIP</option>
+                                <option value="Semi-Vip">Semi-Vip</option>
+                            </select>
+                          <label class="form-label" >Category</label>
+                        </div>
+
+                        <div class="pt-1 mb-4">
+                          <button class="btn btn-dark btn-lg btn-block" type="submit">Upload</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+</body>
+</html>
